@@ -1,4 +1,4 @@
-module.exports.creataUser = (req, res, next) => {
+module.exports.createUser = (req, res, next) => {
     let errors = [];
     
     if(!req.body.username) {

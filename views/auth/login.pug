@@ -9,6 +9,9 @@ block content
         each err in errors  
             .alert.alert-danger= err
 
+    if values
+        .alert.alert-secondary= values
+
     form(action="", method="POST")
         label(for="name") Username
         input.form-control#name(type="type", name="username", placeholder="Email", value= values ? values.username : "")

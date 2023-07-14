@@ -5,8 +5,9 @@ block content
     h1.text-center List Authors 
     div.d-flex.justify-content-between.my-5
         a.btn.btn-warning(href="/authors/create") Create New
-        p.text-xl.mr-auto Hello #{user.username} !!
-
+        .info.d-flex
+            img.mx-4(src= user.avatar , alt="", width="40")
+            p.text-xl.mr-auto Hello #{user.username} !!
     
     form.form-group(action="/authors/search", method="GET", class="d-flex") 
         input.form-control(type="text", name="query", placeholder="Search for something .." value=values)

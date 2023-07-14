@@ -6,17 +6,31 @@ const userController = {
     },
     addUser: async (req, res) => {
         try {
+            req.body.avatar = req.file.path.split("/").slice(1).join("/");
             const newUser = new Account(req.body);
             const savedUser = await newUser.save();
             
             res.redirect("/auth/login");
-
-            // res.status(200).json(savedUser);
         } catch (error) {
             res.status(500).json(error);
         }
     },
-    
+    search: async (req, res) => {
+        try {
+            const query = req.query.query;
+            // console.log(query)
+            const allUsers = (await Account.find()).filter(user => {
+                return user.username.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+            })
+
+            res.render("users/index", {
+                users: allUsers,
+                value: query
+            })            
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    },
     getAllUsers: async (req, res) => {
         try {
             const allUsers = await Account.find();
@@ -34,7 +48,7 @@ const userController = {
             const user = await Account.findById(req.params.id);
 
             res.render("users/view", {
-                user: user
+                user
             })
 
             // res.status(200).json(user);

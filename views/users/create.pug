@@ -8,14 +8,18 @@ block content
             .alert.alert-danger= err
 
 
-    form(action="/users/create", method="POST")
-        label(for="name") Username
-        input#name.form-control(type="text", name="username", value= values ? values.username : "")
-        label(for="phone") Password
-        input#phone.form-control(type="text", name="password", value = values ? values.password : "")
-        label(for="author") Phone
-        input#author.form-control(type="text", name="phone", value = values ? values.phone : "")
-        //- label(for="avatar") Author
-        //- input#avatar.form-control-file(type="file", name="avatar")
+    form(action="/users/create", method="POST", enctype="multipart/form-data")
+        .form-group.my-2
+            label(for="name") Username
+            input#name.form-control(type="text", name="username", value= values ? values.username : "")
+        .form-group.my-2
+            label(for="phone") Password
+            input#phone.form-control(type="text", name="password", value = values ? values.password : "")
+        .form-group.my-2
+            label(for="author") Phone
+            input#author.form-control(type="text", name="phone", value = values ? values.phone : "")
+        .form-group.my-2
+            label(for="avatar") Avatar
+            input#avatar.form-control-file(type="file", name="avatar")
         button.btn.btn-danger Add 
         
