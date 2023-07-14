@@ -1,0 +1,21 @@
+extends ../layout/common
+block content
+
+    h1 Create User
+
+    if errors 
+        each err in errors 
+            .alert.alert-danger= err
+
+
+    form(action="/users/create", method="POST")
+        label(for="name") Username
+        input#name.form-control(type="text", name="username", value= values ? values.username : "")
+        label(for="phone") Password
+        input#phone.form-control(type="text", name="password", value = values ? values.password : "")
+        label(for="author") Phone
+        input#author.form-control(type="text", name="phone", value = values ? values.phone : "")
+        //- label(for="avatar") Author
+        //- input#avatar.form-control-file(type="file", name="avatar")
+        button.btn.btn-danger Add 
+        

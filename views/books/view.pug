@@ -1,0 +1,15 @@
+extends ../layout/common
+block content
+
+    h1 BOOK
+    table.table
+            tr
+                th Title
+                th Price
+                th Author 
+                th Desciption
+            tr
+                td= book.title
+                td= book.price
+                td= book.author.name
+                td= book.description

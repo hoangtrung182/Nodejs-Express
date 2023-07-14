@@ -1,0 +1,17 @@
+extends ../layout/common
+block content
+
+    h1.text-center Log In
+    .d-flex.justify-content-end
+        a.btn.btn-secondary(href="/auth/signup") Sign Up
+
+    if errors 
+        each err in errors  
+            .alert.alert-danger= err
+
+    form(action="", method="POST")
+        label(for="name") Username
+        input.form-control#name(type="type", name="username", placeholder="Email", value= values ? values.username : "")
+        label(for="password") Password
+        input.form-control#password(type="password", name="password", placeholder="Password", value= values ? values.password : "")
+        button.btn.btn-warning.mt-4 Login

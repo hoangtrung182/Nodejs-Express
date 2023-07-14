@@ -1,0 +1,27 @@
+extends ../layout/common
+block content
+
+    h1.text-center Create book
+
+    if errors 
+        each err in errors 
+            .alert.alert-danger= err
+
+
+    form(action="/books/create", method="POST")
+        .form-group.my-2
+            label(for="name") Title
+            input#name.form-control(type="text", name="title", placeholder="Enter title" value= values ? values.title : "")
+        .form-group.my-2
+            label(for="phone") Price
+            input#phone.form-control(type="text", name="price",placeholder="Enter price" value = values ? values.price : "")
+        .form-group.my-2
+            label(for="author") Author
+            input#author.form-control(type="text", name="author",placeholder="Enter author" value = values ? values.author : "")
+        .form-group.my-2
+            label(for="desc") Description
+            input#desc.form-control(type="text", name="description",placeholder="Enter description" value = values ? values.description : "")
+        //- label(for="avatar") Author
+        //- input#avatar.form-control-file(type="file", name="avatar")
+        button.btn.btn-danger Add 
+        

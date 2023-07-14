@@ -1,0 +1,35 @@
+extends ../layout/common
+block content
+
+
+    h1 List Users
+    div.d-flex.justify-content-between
+        div.my-4
+            //- a.btn.btn-warning(href="/users/create") Create New
+            a.btn.btn-success(href="/authors") See all authors
+            a.btn.btn-danger(href="/auth/logout") Logout
+        h2.ml-auto Hello #{user.username}
+
+    
+    form.form-group(action="/books/search", method="GET", class="d-flex") 
+        input.form-control(type="text", name="query" value=values)
+        button.btn.btn-primary Search 
+        
+    table.table
+        tr 
+            th Username
+            th Phone
+            th Action
+        tr 
+        each user in users
+            tr 
+                //- td 
+                //-     img(src= book.avatar, width="32", border-radius="10")
+                td= user.username
+                td= user.phone
+                td
+                    a(href="/users/" + user._id) View
+                    //- a(href="/users/remove/" + user.id) Delete
+                    //- a(href="/users/update/" + user.id) Update
+
+        

@@ -1,0 +1,33 @@
+extends ../layout/common
+block content
+
+
+    h1.text-center List Books 
+    div.d-flex.justify-content-between.my-5
+        a.btn.btn-warning(href="/books/create") Create New
+        p.text-xl.mr-auto Hello #{user.username} !!
+
+    form.form-group(action="/books/search", method="GET", class="d-flex") 
+        input.form-control(type="text", name="query", placeholder="Enter something about book" value=values)
+        button.btn.btn-primary Search 
+        
+    table.table
+        tr 
+            th Title
+            th Price
+            th Author
+            th Action
+        tr 
+        each book in books
+            tr 
+                //- td 
+                //-     img(src= book.avatar, width="32", border-radius="10")
+                td= book.title
+                td= book.price
+                td= book.author
+                td
+                    a.btn.btn-Light(href="/books/" + book._id) View
+                    //- a(href="/users/remove/" + user.id) Delete
+                    //- a(href="/users/update/" + user.id) Update
+
+        

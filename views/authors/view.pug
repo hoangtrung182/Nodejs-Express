@@ -1,0 +1,17 @@
+extends ../layout/common
+block content
+
+    h1 AUTHOR
+    table.table
+            tr
+                th Name
+                th BirthYear
+                th Books 
+                th Desciption
+            tr
+                td= author.name
+                td= author.birthyear
+                td
+                    ul
+                    each book in author.books
+                        li= book.title
