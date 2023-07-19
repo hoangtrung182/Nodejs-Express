@@ -36,7 +36,6 @@ const bookController = {
     getABook : async (req, res) => {
         try {
             const book = await Book.findById(req.params.id).populate('author');
-            console.log(book);
             res.render("books/view", {
                 book: book
             })
