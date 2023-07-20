@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 
 
 app.use("/auth", authRoute);
-app.use("/users",authMiddleware.requireAuth, userRoute);
+app.use("/users", authMiddleware.requireAuth, userRoute);
 app.use("/authors", authMiddleware.requireAuth, authorRoute);
 app.use("/books", authMiddleware.requireAuth, bookRoute);
 

@@ -8,6 +8,8 @@ block content
     if errors 
         each err in errors  
             .alert.alert-danger= err
+    if msg 
+        .alert.alert-success= msg
 
     if values
         .alert.alert-secondary= values

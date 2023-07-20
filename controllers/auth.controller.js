@@ -3,9 +3,7 @@ const { Account } = require("../model/model");
 const authController = {
     login: (req, res) => {
         res.render("auth/login");
-        // res.send("Welcome");
     },
-
     postLogin: async (req, res) => {
         const { username, password } = req.body;
 
@@ -39,12 +37,39 @@ const authController = {
         res.redirect("/books");
     },
     signup: (req, res) => {
-        res.render("users/create")
+        res.render("users/create");
+    },
+    addUser: async (req, res) => {
+        try {
+            req.body.avatar = req.file.path.split("/").slice(1).join("/");
+            const newUser = new Account(req.body);
+            
+            const allAccounts = await Account.find();
+            const user = allAccounts.findIndex((user) => user.username === newUser.username);
+
+            if(user !== -1) {
+                res.render("users/create", {
+                    errors: [
+                        "Username already exists"
+                    ],
+                    values: req.body
+                });
+                return;
+            }
+            await newUser.save();
+            
+            res.redirect("/auth/login");
+            // res.render("auth/login", {
+            //     msg: "Register successfully"
+            // })
+        } catch (error) {
+            res.status(500).json(error);
+        }
     },
 
     logout: (req, res) => {
         res.clearCookie("userId");
-        res.redirect("/");
+        res.redirect("/auth/login");
     }
 }
 

@@ -1,20 +1,6 @@
 const { Account } = require("../model/model");
 
 const userController = {
-    create: (req, res) => {
-        res.render("users/create");
-    },
-    addUser: async (req, res) => {
-        try {
-            req.body.avatar = req.file.path.split("/").slice(1).join("/");
-            const newUser = new Account(req.body);
-            const savedUser = await newUser.save();
-            
-            res.redirect("/auth/login");
-        } catch (error) {
-            res.status(500).json(error);
-        }
-    },
     search: async (req, res) => {
         try {
             const query = req.query.query;
